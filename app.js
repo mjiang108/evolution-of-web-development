@@ -37,3 +37,15 @@ app.post("/", async (req, res) => {
     res.redirect("/");
   }
 });
+
+app.get("/:id", async (req, res) => {
+  console.log(req.params.id);
+  let todo;
+  try {
+    todo = await Todo.findById(req.params.id);
+    console.log("todo", todo);
+    res.render("todo.ejs", { todo });
+  } catch (err) {
+    console.log(err);
+  }
+});

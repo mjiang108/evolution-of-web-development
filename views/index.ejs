@@ -14,7 +14,7 @@
   </form>
   <ul>
     <% todos.forEach((todo) => { %>
-      <li><%= todo.content %></li>
+      <li><%= todo.content %> <a href=<%= todo.id %>>(edit)</a></li>
     <% }) %>
   </ul>
   <i>Description: this is a static HTML file served by our application. It just displays hardcoded text and links, similar to the <a href="http://info.cern.ch/hypertext/WWW/TheProject.html" target="_blank">first website ever published</a>. It really isn't a very useful todo "app."</i>
