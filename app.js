@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const Todo = require("./models/Todo");
 
 const app = express();
 const port = 3000;
@@ -19,6 +20,14 @@ app.get("/", (req, res) => {
   res.render("index", { foo: "FOO" });
 });
 
-app.post("/", (req) => {
+app.post("/", async (req, res) => {
   console.log(req.body);
+  const todo = new Todo({ content: req.body.content });
+  try {
+    await todo.save();
+  } catch (err) {
+    console.log(err);
+  } finally {
+    res.redirect("/");
+  }
 });
