@@ -27,7 +27,6 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/", async (req, res) => {
-  console.log(req.body);
   const todo = new Todo({ content: req.body.content });
   try {
     await todo.save();
@@ -39,11 +38,9 @@ app.post("/", async (req, res) => {
 });
 
 app.get("/:id", async (req, res) => {
-  console.log(req.params.id);
   let todo;
   try {
     todo = await Todo.findById(req.params.id);
-    console.log("todo", todo);
     res.render("todo.ejs", { todo });
   } catch (err) {
     console.log(err);
