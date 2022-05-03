@@ -49,3 +49,13 @@ app.get("/:id", async (req, res) => {
     console.log(err);
   }
 });
+
+app.post("/:id/update", async (req, res) => {
+  try {
+    await Todo.findByIdAndUpdate(req.params.id, { content: req.body.content });
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+    res.send(500, err);
+  }
+});
