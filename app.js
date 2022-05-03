@@ -16,8 +16,14 @@ mongoose.connect(process.env.DB_CONNECT, (err) => {
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.render("index", { foo: "FOO" });
+app.get("/", async (req, res) => {
+  let todos;
+  try {
+    todos = await Todo.find();
+  } catch (err) {
+    console.log(err);
+  }
+  res.render("index.ejs", { todos });
 });
 
 app.post("/", async (req, res) => {
