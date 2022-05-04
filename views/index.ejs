@@ -14,7 +14,12 @@
   </form>
   <ul>
     <% todos.forEach((todo) => { %>
-      <li><%= todo.content %> <a href=<%= todo.id %>>(edit)</a></li>
+      <li>
+        <%= todo.content %> 
+        <form action=<%= `${todo.id}/delete` %> style="display: inline" method="POST">
+          <input type="submit" value="Delete">
+        </form>
+      </li>
     <% }) %>
   </ul>
   <i>Template Engine - a template engine dynamically generated this HTML file using real data from a database. We can also write data via HTML forms. Now we have a functioning web app!</i>
