@@ -56,3 +56,13 @@ app.post("/:id/update", async (req, res) => {
     res.send(500, err);
   }
 });
+
+app.post("/:id/delete", async (req, res) => {
+  try {
+    await Todo.findByIdAndDelete(req.params.id);
+    res.redirect("/");
+  } catch (err) {
+    console.log(err);
+    res.send(500, err);
+  }
+});
