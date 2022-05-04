@@ -15,7 +15,7 @@
   <ul>
     <% todos.forEach((todo) => { %>
       <li id=<%= todo.id %>>
-        <p class="content"><%= todo.content %> </p>
+        <p class="content"><%= todo.content %></p>
         <button class="update-button">Update</button>
         <form action=<%= `${todo.id}/delete` %> style="display: inline" method="POST">
           <input type="submit" value="Delete">
