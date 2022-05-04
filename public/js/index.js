@@ -1,13 +1,13 @@
-const editButtons = document.querySelectorAll(".edit-button");
+const updateButtons = document.querySelectorAll(".update-button");
 
 function replaceContentWithForm(e) {
-  const editButton = e.target;
+  const updateButton = e.target;
   const li = e.target.parentNode;
   const contentEl = li.querySelector(".content");
   const { id } = li;
   const content = contentEl.textContent;
 
-  editButton.setAttribute("disabled", "true");
+  updateButton.setAttribute("disabled", "true");
   li.removeChild(contentEl);
 
   const form = document.createElement("form");
@@ -25,6 +25,6 @@ function replaceContentWithForm(e) {
   li.prepend(form);
 }
 
-editButtons.forEach((editButton) => {
-  editButton.addEventListener("click", replaceContentWithForm);
+updateButtons.forEach((updateButton) => {
+  updateButton.addEventListener("click", replaceContentWithForm);
 });
