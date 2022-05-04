@@ -38,16 +38,6 @@ app.post("/", async (req, res) => {
   }
 });
 
-app.get("/:id", async (req, res) => {
-  let todo;
-  try {
-    todo = await Todo.findById(req.params.id);
-    res.render("todo.ejs", { todo });
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 app.post("/:id/update", async (req, res) => {
   try {
     await Todo.findByIdAndUpdate(req.params.id, { content: req.body.content });
