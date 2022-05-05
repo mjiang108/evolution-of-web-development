@@ -2,7 +2,7 @@ const updateButtons = document.querySelectorAll(".update-button");
 
 function replaceContentWithForm(e) {
   const li = e.target.parentNode;
-  const contentEl = li.querySelector(".content");
+  const contentEl = li.querySelector(".todo-content");
   const { id } = li;
   const content = contentEl.textContent;
 
