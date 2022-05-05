@@ -40,15 +40,12 @@ app.get("/todos", (req, res) => {
 });
 
 app.put("/todos/:id", (req, res) => {
-  console.log("body", req.body);
-  console.log(req.params.id);
   Todo.findByIdAndUpdate(
     req.params.id,
     { content: req.body.content },
     { returnDocument: "after" }
   )
     .then((todo) => {
-      console.log(todo);
       res.json(todo);
     })
     .catch((err) => {
