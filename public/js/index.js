@@ -82,10 +82,30 @@ const handleDelete = (id) => {
     method: "DELETE",
   })
     .then(() => {
-      console.log("handleDelete success");
       populateTodos();
     })
     .catch((err) => console.error(err));
 };
+
+const handleCreate = (e) => {
+  e.preventDefault();
+  const formData = new FormData(document.querySelector("#create-form"));
+  const todo = Object.fromEntries(formData);
+  fetch("todos/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify(todo),
+  })
+    .then(() => {
+      populateTodos();
+    })
+    .catch((err) => console.error(err));
+};
+
+document
+  .querySelector("#create-button")
+  .addEventListener("click", handleCreate);
 
 populateTodos();
