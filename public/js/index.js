@@ -101,13 +101,14 @@ const handleCreate = (e) => {
     body: JSON.stringify(todo),
   })
     .then(() => {
+      const createTextInput = document.querySelector("#create-text-input");
+      createTextInput.value = "";
       populateTodos();
     })
     .catch((err) => console.error(err));
 };
 
-document
-  .querySelector("#create-button")
-  .addEventListener("click", handleCreate);
+const createButton = document.querySelector("#create-button");
+createButton.addEventListener("click", handleCreate);
 
 populateTodos();
