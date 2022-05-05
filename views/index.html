@@ -13,15 +13,6 @@
     <input type="submit" value="Create">
   </form>
   <ul>
-    <% todos.forEach((todo) => { %>
-      <li id=<%= todo.id %>>
-        <p class="content"><%= todo.content %></p>
-        <button class="update-button">Update</button>
-        <form action=<%= `${todo.id}/delete` %> style="display: inline" method="POST">
-          <input type="submit" value="Delete">
-        </form>
-      </li>
-    <% }) %>
   </ul>
   <p style="font-style: italic;">JavaScript - this website loads a JavaScript file, which contains code that can be run in the browser. A common use case of Javascript is attaching event listeners to DOM elements. In this case, when the user clicks the "Update" button, the todo is replaced by a form to update the todo. By receiving user input and creating visual output, JavaScript can be used to build truly interactive apps. </p>
   <script src="static/js/index.js"></script>

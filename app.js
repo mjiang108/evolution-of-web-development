@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const path = require("path");
 const Todo = require("./models/Todo");
 
 const app = express();
@@ -18,13 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static("public"));
 
 app.get("/", async (req, res) => {
-  let todos;
-  try {
-    todos = await Todo.find();
-  } catch (err) {
-    console.log(err);
-  }
-  res.render("index.ejs", { todos });
+  res.sendFile(path.resolve(__dirname, "views/index.html"));
 });
 
 app.post("/", async (req, res) => {
