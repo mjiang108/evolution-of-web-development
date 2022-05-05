@@ -5,7 +5,7 @@ const path = require("path");
 const Todo = require("./models/Todo");
 
 const app = express();
-const port = 3000;
+const port = 3001;
 mongoose.connect(process.env.DB_CONNECT, (err) => {
   if (err) return console.log("db connection failed");
   console.log("db connection succeeded");
