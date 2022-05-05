@@ -1,6 +1,4 @@
-const updateButtons = document.querySelectorAll(".update-button");
-
-function replaceContentWithForm(e) {
+const replaceContentWithForm = (e) => {
   const updateButton = e.target;
   const li = e.target.parentNode;
   const contentEl = li.querySelector(".content");
@@ -23,8 +21,36 @@ function replaceContentWithForm(e) {
   form.append(textInput, submitButton);
 
   li.prepend(form);
-}
+};
 
-updateButtons.forEach((updateButton) => {
-  updateButton.addEventListener("click", replaceContentWithForm);
-});
+const populateTodos = () => {
+  fetch("todos")
+    .then((res) => res.json())
+    .then((todos) => {
+      const todosUl = document.querySelector(".todos-ul");
+      // clear any existing todos
+      while (todosUl.firstChild) {
+        todosUl.firstChild.remove();
+      }
+      // populate todos
+      todos.forEach((todo) => {
+        const li = document.createElement("li");
+        // eslint-disable-next-line
+        li.id = todo._id;
+        const p = document.createElement("p");
+        p.setAttribute("class", "content");
+        p.innerHTML = todo.content;
+        const updateButton = document.createElement("button");
+        updateButton.setAttribute("class", "update-button");
+        updateButton.innerHTML = "Update";
+        updateButton.addEventListener("click", replaceContentWithForm);
+        const deleteButton = document.createElement("button");
+        deleteButton.setAttribute("class", "delete-button");
+        deleteButton.innerHTML = "Delete";
+        li.append(p, updateButton, deleteButton);
+        todosUl.append(li);
+      });
+    });
+};
+
+populateTodos();

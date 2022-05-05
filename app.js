@@ -33,6 +33,12 @@ app.post("/todos", async (req, res) => {
   }
 });
 
+app.get("/todos", async (req, res) => {
+  Todo.find({}, (err, todos) => {
+    if (err) return res.send(500, err);
+    return res.json(todos);
+  });
+});
 // app.post("/", async (req, res) => {
 //   const todo = new Todo({ content: req.body.content });
 //   try {
