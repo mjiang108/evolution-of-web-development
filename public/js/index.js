@@ -69,7 +69,7 @@ const handleUpdate = (e, textInput, id) => {
   fetch(`todos/${id}`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(updatedTodo),
   })
@@ -96,7 +96,7 @@ const handleCreate = (e) => {
   fetch("todos/", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(todo),
   })
