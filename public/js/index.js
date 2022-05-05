@@ -1,6 +1,6 @@
 const replaceContentWithForm = (e) => {
   const li = e.target.parentNode;
-  const contentEl = li.querySelector(".content");
+  const contentEl = li.querySelector(".todo-content");
   const { id } = li;
   const content = contentEl.textContent;
   const updateButtons = document.querySelectorAll(".update-button");
@@ -45,7 +45,7 @@ const populateTodos = () => {
         const id = todo._id;
         li.id = id;
         const p = document.createElement("p");
-        p.setAttribute("class", "content");
+        p.setAttribute("class", "todo-content");
         p.innerHTML = todo.content;
         const updateButton = document.createElement("button");
         updateButton.setAttribute("class", "update-button");
