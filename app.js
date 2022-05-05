@@ -14,9 +14,8 @@ mongoose.connect(process.env.DB_CONNECT, (err) => {
   });
 });
 
-app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: true }));
 app.use("/static", express.static("public"));
+app.use(express.json());
 
 app.get("/", async (req, res) => {
   res.sendFile(path.resolve(__dirname, "views/index.html"));
@@ -33,11 +32,29 @@ app.post("/todos", async (req, res) => {
   }
 });
 
-app.get("/todos", async (req, res) => {
+app.get("/todos", (req, res) => {
   Todo.find({}, (err, todos) => {
     if (err) return res.send(500, err);
     return res.json(todos);
   });
+});
+
+app.put("/todos/:id", (req, res) => {
+  console.log("body", req.body);
+  console.log(req.params.id);
+  Todo.findByIdAndUpdate(
+    req.params.id,
+    { content: req.body.content },
+    { returnDocument: "after" }
+  )
+    .then((todo) => {
+      console.log(todo);
+      res.json(todo);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(500, err);
+    });
 });
 // app.post("/", async (req, res) => {
 //   const todo = new Todo({ content: req.body.content });

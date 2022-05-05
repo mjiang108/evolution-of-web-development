@@ -5,12 +5,12 @@ const replaceContentWithForm = (e) => {
   const { id } = li;
   const content = contentEl.textContent;
 
+  // disable update button and remove content
   updateButton.setAttribute("disabled", "true");
   li.removeChild(contentEl);
 
+  // build up form
   const form = document.createElement("form");
-  form.setAttribute("action", `${id}/update`);
-  form.setAttribute("method", "POST");
   const textInput = document.createElement("input");
   textInput.setAttribute("type", "text");
   textInput.setAttribute("name", "content");
@@ -18,8 +18,12 @@ const replaceContentWithForm = (e) => {
   const submitButton = document.createElement("input");
   submitButton.setAttribute("type", "submit");
   submitButton.setAttribute("value", "Save");
+  submitButton.addEventListener("click", (event) =>
+    handleUpdate(event, textInput, id)
+  );
   form.append(textInput, submitButton);
 
+  // prepend form
   li.prepend(form);
 };
 
@@ -51,6 +55,24 @@ const populateTodos = () => {
         todosUl.append(li);
       });
     });
+};
+
+const handleUpdate = (e, textInput, id) => {
+  e.preventDefault();
+  const updatedTodo = {
+    content: textInput.value,
+  };
+  fetch(`todos/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+    },
+    body: JSON.stringify(updatedTodo),
+  })
+    .then(() => {
+      populateTodos();
+    })
+    .catch((err) => console.error(err));
 };
 
 populateTodos();
