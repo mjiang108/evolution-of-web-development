@@ -22,7 +22,7 @@ app.get("/", async (req, res) => {
   res.sendFile(path.resolve(__dirname, "views/index.html"));
 });
 
-app.post("/", async (req, res) => {
+app.post("/todos", async (req, res) => {
   const todo = new Todo({ content: req.body.content });
   try {
     await todo.save();
@@ -33,22 +33,33 @@ app.post("/", async (req, res) => {
   }
 });
 
-app.post("/:id/update", async (req, res) => {
-  try {
-    await Todo.findByIdAndUpdate(req.params.id, { content: req.body.content });
-    res.redirect("/");
-  } catch (err) {
-    console.log(err);
-    res.send(500, err);
-  }
-});
+// app.post("/", async (req, res) => {
+//   const todo = new Todo({ content: req.body.content });
+//   try {
+//     await todo.save();
+//   } catch (err) {
+//     console.log(err);
+//   } finally {
+//     res.redirect("/");
+//   }
+// });
 
-app.post("/:id/delete", async (req, res) => {
-  try {
-    await Todo.findByIdAndDelete(req.params.id);
-    res.redirect("/");
-  } catch (err) {
-    console.log(err);
-    res.send(500, err);
-  }
-});
+// app.post("/:id/update", async (req, res) => {
+//   try {
+//     await Todo.findByIdAndUpdate(req.params.id, { content: req.body.content });
+//     res.redirect("/");
+//   } catch (err) {
+//     console.log(err);
+//     res.send(500, err);
+//   }
+// });
+
+// app.post("/:id/delete", async (req, res) => {
+//   try {
+//     await Todo.findByIdAndDelete(req.params.id);
+//     res.redirect("/");
+//   } catch (err) {
+//     console.log(err);
+//     res.send(500, err);
+//   }
+// });
