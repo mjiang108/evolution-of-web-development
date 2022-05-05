@@ -53,6 +53,16 @@ app.put("/todos/:id", (req, res) => {
       res.send(500, err);
     });
 });
+
+app.delete("/todos/:id", async (req, res) => {
+  try {
+    await Todo.findByIdAndDelete(req.params.id);
+    res.end();
+  } catch (err) {
+    console.log(err);
+    res.send(500, err);
+  }
+});
 // app.post("/", async (req, res) => {
 //   const todo = new Todo({ content: req.body.content });
 //   try {

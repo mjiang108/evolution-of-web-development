@@ -40,7 +40,8 @@ const populateTodos = () => {
       todos.forEach((todo) => {
         const li = document.createElement("li");
         // eslint-disable-next-line
-        li.id = todo._id;
+        const id = todo._id;
+        li.id = id;
         const p = document.createElement("p");
         p.setAttribute("class", "content");
         p.innerHTML = todo.content;
@@ -51,6 +52,7 @@ const populateTodos = () => {
         const deleteButton = document.createElement("button");
         deleteButton.setAttribute("class", "delete-button");
         deleteButton.innerHTML = "Delete";
+        deleteButton.addEventListener("click", () => handleDelete(id));
         li.append(p, updateButton, deleteButton);
         todosUl.append(li);
       });
@@ -70,6 +72,17 @@ const handleUpdate = (e, textInput, id) => {
     body: JSON.stringify(updatedTodo),
   })
     .then(() => {
+      populateTodos();
+    })
+    .catch((err) => console.error(err));
+};
+
+const handleDelete = (id) => {
+  fetch(`todos/${id}`, {
+    method: "DELETE",
+  })
+    .then(() => {
+      console.log("handleDelete success");
       populateTodos();
     })
     .catch((err) => console.error(err));
