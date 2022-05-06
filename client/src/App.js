@@ -4,6 +4,7 @@ import Todos from "./Todos";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
+  const [refetchToggle, setRefetchToggle] = useState(true);
   useEffect(() => {
     fetch("todos")
       .then((res) => res.json())
@@ -11,12 +12,12 @@ const App = () => {
         setTodos(todos);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [refetchToggle]);
 
   return (
     <>
       <h1>Todos</h1>
-      <CreateForm todos={todos} setTodos={setTodos} />
+      <CreateForm setRefetchToggle={setRefetchToggle} />
       <Todos todos={todos} setTodos={setTodos} />
       <p>Description</p>
     </>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CreateForm = ({ setTodos, todos }) => {
+const CreateForm = ({ setRefetchToggle }) => {
   const [newContent, setNewContent] = useState("");
 
   const handleSubmit = (e) => {
@@ -15,8 +15,7 @@ const CreateForm = ({ setTodos, todos }) => {
       },
     })
       .then(() => {
-        // TODO: ideally we refetch todos from server, so we have the correct ids
-        setTodos([...todos, { _id: "123", content: newContent }]);
+        setRefetchToggle((refetchToggle) => !refetchToggle);
         setNewContent("");
       })
       .catch((err) => console.error(err));
