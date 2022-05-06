@@ -5,10 +5,24 @@ import { cloneDeep } from "lodash";
 const TodosList = () => {
   const [todos, setTodos] = useState([]);
   const saveTodoFactory = (id) => (updatedContent) => {
-    const todosCopy = cloneDeep(todos);
-    const td = todosCopy.find((td) => td._id === id);
-    td.content = updatedContent;
-    setTodos(todosCopy);
+    // save to db
+    fetch(`todos/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: updatedContent,
+      }),
+    })
+      // then update state. another option is to just fetch todos again
+      .then(() => {
+        const todosCopy = cloneDeep(todos);
+        const td = todosCopy.find((td) => td._id === id);
+        td.content = updatedContent;
+        setTodos(todosCopy);
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
