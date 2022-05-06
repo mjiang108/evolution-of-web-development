@@ -4,6 +4,7 @@ import { cloneDeep } from "lodash";
 
 const TodosList = () => {
   const [todos, setTodos] = useState([]);
+
   useEffect(() => {
     fetch("todos")
       .then((res) => res.json())
