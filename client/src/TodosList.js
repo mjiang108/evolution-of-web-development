@@ -13,7 +13,7 @@ const TodosList = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const saveTodoFactory = (id) => (updatedContent) => {
+  const handleSaveFactory = (id) => (updatedContent) => {
     // save to db
     fetch(`todos/${id}`, {
       method: "PUT",
@@ -40,7 +40,7 @@ const TodosList = () => {
         <Todo
           key={todo._id}
           content={todo.content}
-          saveTodo={saveTodoFactory(todo._id)}
+          handleSave={handleSaveFactory(todo._id)}
         />
       ))}
     </ul>
