@@ -4,6 +4,15 @@ import { cloneDeep } from "lodash";
 
 const TodosList = () => {
   const [todos, setTodos] = useState([]);
+  useEffect(() => {
+    fetch("todos")
+      .then((res) => res.json())
+      .then((todos) => {
+        setTodos(todos);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   const saveTodoFactory = (id) => (updatedContent) => {
     // save to db
     fetch(`todos/${id}`, {
@@ -25,14 +34,6 @@ const TodosList = () => {
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    fetch("todos")
-      .then((res) => res.json())
-      .then((todos) => {
-        setTodos(todos);
-      })
-      .catch((err) => console.error(err));
-  }, []);
   return (
     <ul>
       {todos.map((todo) => (

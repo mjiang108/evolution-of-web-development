@@ -3,9 +3,11 @@ import UpdateForm from "./UpdateForm";
 
 const Todo = ({ content, saveTodo }) => {
   const [isUpdating, setIsUpdating] = useState(false);
+
   const handleUpdate = () => {
     setIsUpdating(true);
   };
+
   return (
     <li>
       {isUpdating ? (

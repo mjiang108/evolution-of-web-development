@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const CreateForm = () => {
   const [newTodo, setNewTodo] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch("todos", {
@@ -18,6 +19,7 @@ const CreateForm = () => {
       })
       .catch((err) => console.error(err));
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input
