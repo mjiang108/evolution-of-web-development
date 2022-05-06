@@ -19,7 +19,7 @@ const TodosList = () => {
         <Todo
           key={todo._id}
           content={todo.content}
-          updateTodo={(todo) => {
+          saveTodo={(todo) => {
             const todosCopy = cloneDeep(todos);
             const td = todosCopy.find((td) => td.id === todo._id);
             td.content = todo;

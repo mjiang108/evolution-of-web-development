@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UpdateForm from "./UpdateForm";
 
-const Todo = ({ content, updateTodo }) => {
+const Todo = ({ content, saveTodo }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const handleUpdate = () => {
     setIsUpdating(true);
@@ -11,7 +11,7 @@ const Todo = ({ content, updateTodo }) => {
       {isUpdating ? (
         <UpdateForm
           content={content}
-          updateTodo={updateTodo}
+          saveTodo={saveTodo}
           setIsUpdating={setIsUpdating}
         />
       ) : (

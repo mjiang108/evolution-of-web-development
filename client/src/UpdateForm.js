@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const UpdateForm = ({ content, updateTodo, setIsUpdating }) => {
+const UpdateForm = ({ content, saveTodo, setIsUpdating }) => {
   const [updatedContent, setUpdatedContent] = useState(content);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        updateTodo(updatedContent);
+        saveTodo(updatedContent);
         setIsUpdating(false);
       }}
     >
