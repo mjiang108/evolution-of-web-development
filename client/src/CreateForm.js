@@ -1,21 +1,23 @@
 import { useState } from "react";
 
-const CreateForm = () => {
-  const [newTodo, setNewTodo] = useState("");
+const CreateForm = ({ setTodos, todos }) => {
+  const [newContent, setNewContent] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch("todos", {
       method: "POST",
       body: JSON.stringify({
-        content: newTodo,
+        content: newContent,
       }),
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then(() => {
-        setNewTodo("");
+        // TODO: ideally we refetch todos from server, so we have the correct ids
+        setTodos([...todos, { _id: "123", content: newContent }]);
+        setNewContent("");
       })
       .catch((err) => console.error(err));
   };
@@ -24,8 +26,8 @@ const CreateForm = () => {
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={newTodo}
-        onChange={(e) => setNewTodo(e.target.value)}
+        value={newContent}
+        onChange={(e) => setNewContent(e.target.value)}
       />
       <input type="submit" value="Create" />
     </form>
