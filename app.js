@@ -14,7 +14,6 @@ mongoose.connect(process.env.DB_CONNECT, (err) => {
   });
 });
 
-app.use("/static", express.static("public"));
 app.use(express.json());
 
 app.get("/", async (req, res) => {
