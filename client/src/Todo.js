@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UpdateForm from "./UpdateForm";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo, updateTodo }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updatedTodo, setUpdatedTodo] = useState(todo.content);
   const handleUpdate = () => {
@@ -9,7 +9,11 @@ const Todo = ({ todo }) => {
   };
   return (
     <li>
-      {isUpdating ? <UpdateForm /> : <p>{todo.content}</p>}
+      {isUpdating ? (
+        <UpdateForm todo={todo} updateTodo={updateTodo} />
+      ) : (
+        <p>{todo}</p>
+      )}
       <button onClick={handleUpdate} disabled={isUpdating}>
         Update
       </button>

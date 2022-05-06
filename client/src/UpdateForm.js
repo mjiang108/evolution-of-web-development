@@ -1,6 +1,6 @@
-const UpdateForm = () => {
+const UpdateForm = ({ todo, updateTodo }) => {
   return (
-    <form>
+    <form onSubmit={updateTodo}>
       <input type="text" />
       <input type="submit" value="Save" />
     </form>

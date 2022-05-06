@@ -14,7 +14,13 @@ const TodosList = () => {
   return (
     <ul>
       {todos.map((todo) => (
-        <Todo key={todo._id} todo={todo} />
+        <Todo
+          key={todo._id}
+          todo={todo.content}
+          updateTodo={() =>
+            setTodos([{ _id: 123, content: "oh no only 1 todo now" }])
+          }
+        />
       ))}
     </ul>
   );
