@@ -4,9 +4,9 @@ import { cloneDeep } from "lodash";
 
 const TodosList = () => {
   const [todos, setTodos] = useState([]);
-  const saveTodo = (updatedContent) => {
+  const saveTodoFactory = (id) => (updatedContent) => {
     const todosCopy = cloneDeep(todos);
-    const td = todosCopy.find((td) => td.id === updatedContent._id);
+    const td = todosCopy.find((td) => td._id === id);
     td.content = updatedContent;
     setTodos(todosCopy);
   };
@@ -22,7 +22,11 @@ const TodosList = () => {
   return (
     <ul>
       {todos.map((todo) => (
-        <Todo key={todo._id} content={todo.content} saveTodo={saveTodo} />
+        <Todo
+          key={todo._id}
+          content={todo.content}
+          saveTodo={saveTodoFactory(todo._id)}
+        />
       ))}
     </ul>
   );
