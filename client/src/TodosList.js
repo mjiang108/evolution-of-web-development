@@ -4,6 +4,12 @@ import { cloneDeep } from "lodash";
 
 const TodosList = () => {
   const [todos, setTodos] = useState([]);
+  const saveTodo = (updatedContent) => {
+    const todosCopy = cloneDeep(todos);
+    const td = todosCopy.find((td) => td.id === updatedContent._id);
+    td.content = updatedContent;
+    setTodos(todosCopy);
+  };
 
   useEffect(() => {
     fetch("todos")
@@ -16,16 +22,7 @@ const TodosList = () => {
   return (
     <ul>
       {todos.map((todo) => (
-        <Todo
-          key={todo._id}
-          content={todo.content}
-          saveTodo={(todo) => {
-            const todosCopy = cloneDeep(todos);
-            const td = todosCopy.find((td) => td.id === todo._id);
-            td.content = todo;
-            setTodos(todosCopy);
-          }}
-        />
+        <Todo key={todo._id} content={todo.content} saveTodo={saveTodo} />
       ))}
     </ul>
   );
