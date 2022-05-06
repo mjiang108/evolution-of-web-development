@@ -1,6 +1,12 @@
-const UpdateForm = ({ todo, updateTodo }) => {
+const UpdateForm = ({ todo, updateTodo, setIsUpdating }) => {
   return (
-    <form onSubmit={updateTodo}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        updateTodo("it works!");
+        setIsUpdating(false);
+      }}
+    >
       <input type="text" />
       <input type="submit" value="Save" />
     </form>

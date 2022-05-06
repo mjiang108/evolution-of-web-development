@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Todo from "./Todo";
+import { cloneDeep } from "lodash";
 
 const TodosList = () => {
   const [todos, setTodos] = useState([]);
@@ -17,9 +18,12 @@ const TodosList = () => {
         <Todo
           key={todo._id}
           todo={todo.content}
-          updateTodo={() =>
-            setTodos([{ _id: 123, content: "oh no only 1 todo now" }])
-          }
+          updateTodo={(todo) => {
+            const todosCopy = cloneDeep(todos);
+            const td = todosCopy.find((td) => td.id === todo._id);
+            td.content = todo;
+            setTodos(todosCopy);
+          }}
         />
       ))}
     </ul>

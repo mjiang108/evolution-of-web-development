@@ -10,7 +10,11 @@ const Todo = ({ todo, updateTodo }) => {
   return (
     <li>
       {isUpdating ? (
-        <UpdateForm todo={todo} updateTodo={updateTodo} />
+        <UpdateForm
+          todo={todo}
+          updateTodo={updateTodo}
+          setIsUpdating={setIsUpdating}
+        />
       ) : (
         <p>{todo}</p>
       )}
