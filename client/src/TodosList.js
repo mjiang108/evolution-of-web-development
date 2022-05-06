@@ -2,17 +2,7 @@ import { useEffect, useState } from "react";
 import Todo from "./Todo";
 import { cloneDeep } from "lodash";
 
-const TodosList = () => {
-  const [todos, setTodos] = useState([]);
-  useEffect(() => {
-    fetch("todos")
-      .then((res) => res.json())
-      .then((todos) => {
-        setTodos(todos);
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
+const TodosList = ({ todos, setTodos }) => {
   const handleSaveFactory = (id) => (updatedContent) => {
     // update db
     fetch(`todos/${id}`, {
