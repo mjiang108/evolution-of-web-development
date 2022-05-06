@@ -17,7 +17,7 @@ const TodosList = () => {
       {todos.map((todo) => (
         <Todo
           key={todo._id}
-          todo={todo.content}
+          content={todo.content}
           updateTodo={(todo) => {
             const todosCopy = cloneDeep(todos);
             const td = todosCopy.find((td) => td.id === todo._id);

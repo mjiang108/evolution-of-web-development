@@ -1,4 +1,4 @@
-const UpdateForm = ({ todo, updateTodo, setIsUpdating }) => {
+const UpdateForm = ({ content, updateTodo, setIsUpdating }) => {
   return (
     <form
       onSubmit={(e) => {
