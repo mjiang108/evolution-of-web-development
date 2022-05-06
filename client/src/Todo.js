@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UpdateForm from "./UpdateForm";
 
-const Todo = ({ content, handleSave }) => {
+const Todo = ({ content, handleSave, handleDelete }) => {
   const [isUpdating, setIsUpdating] = useState(false);
 
   const handleUpdate = () => {
@@ -22,7 +22,7 @@ const Todo = ({ content, handleSave }) => {
       <button onClick={handleUpdate} disabled={isUpdating}>
         Update
       </button>
-      <button>Delete</button>
+      <button onClick={handleDelete}>Delete</button>
     </li>
   );
 };

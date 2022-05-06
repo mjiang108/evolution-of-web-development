@@ -14,7 +14,7 @@ const TodosList = () => {
   }, []);
 
   const handleSaveFactory = (id) => (updatedContent) => {
-    // save to db
+    // update db
     fetch(`todos/${id}`, {
       method: "PUT",
       headers: {
@@ -34,6 +34,19 @@ const TodosList = () => {
       .catch((err) => console.error(err));
   };
 
+  const handleDeleteFactory = (id) => () => {
+    // update db
+    fetch(`todos/${id}`, {
+      method: "DELETE",
+    })
+      // then update state. another option is to just fetch todos again
+      .then(() => {
+        const newTodos = cloneDeep(todos).filter((todo) => todo._id !== id);
+        setTodos(newTodos);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <ul>
       {todos.map((todo) => (
@@ -41,6 +54,7 @@ const TodosList = () => {
           key={todo._id}
           content={todo.content}
           handleSave={handleSaveFactory(todo._id)}
+          handleDelete={handleDeleteFactory(todo._id)}
         />
       ))}
     </ul>
