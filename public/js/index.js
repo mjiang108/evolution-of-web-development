@@ -3,12 +3,9 @@ const replaceContentWithForm = (e) => {
   const contentEl = li.querySelector(".todo-content");
   const { id } = li;
   const content = contentEl.textContent;
-  const updateButtons = document.querySelectorAll(".update-button");
+  const updateButton = e.target;
 
-  // disable all update buttons and remove content
-  updateButtons.forEach((updateButton) =>
-    updateButton.setAttribute("disabled", "true")
-  );
+  updateButton.setAttribute("disabled", "true");
   li.removeChild(contentEl);
 
   // build up form
