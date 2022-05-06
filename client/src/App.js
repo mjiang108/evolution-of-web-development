@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CreateForm from "./CreateForm";
-import TodosList from "./TodosList";
+import Todos from "./Todos";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -17,7 +17,7 @@ const App = () => {
     <>
       <h1>Todos</h1>
       <CreateForm todos={todos} setTodos={setTodos} />
-      <TodosList todos={todos} setTodos={setTodos} />
+      <Todos todos={todos} setTodos={setTodos} />
       <p>Description</p>
     </>
   );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Todo from "./Todo";
 import { cloneDeep } from "lodash";
 
-const TodosList = ({ todos, setTodos }) => {
+const Todos = ({ todos, setTodos }) => {
   const handleSaveFactory = (id) => (updatedContent) => {
     // update db
     fetch(`todos/${id}`, {
@@ -51,4 +51,4 @@ const TodosList = ({ todos, setTodos }) => {
   );
 };
 
-export default TodosList;
+export default Todos;
